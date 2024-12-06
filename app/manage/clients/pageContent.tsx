@@ -109,7 +109,7 @@ export default function ManageClientContent({clients}:{clients: Client[]}) {
         PaperProps={{ style: { width: '50%' } }}
       >
         {drawerContent === "details" && selectedClientId && (
-          <ClientDetail clientId={selectedClientId} onBack={handleDrawerClose} />
+          <ClientDetail clientsData={clients} clientId={selectedClientId} onBack={handleDrawerClose} />
         )}
         {drawerContent === "add" && (
           <AddClientDialog
