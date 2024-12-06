@@ -10,15 +10,11 @@ import {
   Button,
   TextField,
   IconButton,
-  Grid,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 // Import Client interface
 import { Client } from "@/app/types/Clients/client";
-
-// Import JSON data
-import clientsData from "@/app/components/clients/clients.json";
 
 export default function ClientDetail({
   clientId,
@@ -31,9 +27,17 @@ export default function ClientDetail({
   const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
-    // Fetch client data based on clientId
-    const clientData = clientsData.find((c) => c.id === clientId);
-    setClient(clientData || null);
+    (async () => {
+      const response = await fetch(`http://localhost:5000/api/customer/`, {
+        headers: {
+          authorization: `Bearer ${process.env.JWTSecret}`
+        }
+      })
+
+      const data: Client[] = await response.json()
+
+      setClient(data.find((client) => client.id === clientId) || null);
+    })()
   }, [clientId]);
 
   if (!client) {
