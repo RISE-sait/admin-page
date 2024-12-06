@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ClientTable from "@/app/components/clients/ClientTable";
 import AddClientDialog from "@/app/components/clients/AddClientDialog";
 import {
@@ -19,29 +19,13 @@ import { motion } from "framer-motion";
 // Import Client interface
 import { Client } from "@/app/types/Clients/client";
 
-export default function ManageClientContent({JWTSecret}:{JWTSecret:string}) { 
-  const [clients, setClients] = useState<Client[]>([]);
+export default function ManageClientContent({clients}:{clients: Client[]}) { 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerContent, setDrawerContent] = useState<"details" | "add" | null>(null);
 
-  useEffect(() => {
-    // Load clients data from JSON file
-    (async () => {
-      const response = await fetch(`http://localhost:5000/api/customer/`, {
-        headers: {
-          authorization: `Bearer ${JWTSecret}`
-        }
-      })
-
-      const data = await response.json()
-      setClients(data)
-    })();
-  }, []);
-
-  const handleAddClient = (client: Client) => {
-    setClients([...clients, client]);
+  const handleAddClient = () => {
     handleDrawerClose();
   };
 

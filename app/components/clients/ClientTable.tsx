@@ -12,21 +12,11 @@ export default function ClientTable({
   onClientSelect: (id: string) => void;
 }) {
   const columns: GridColDef[] = [
-    {
-      field: "profilePicture",
-      headerName: "",
-      width: 70,
-      renderCell: (params) => (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
-          <Avatar src={params.value} alt={params.row.name} />
-        </div>
-      ),
-    },
+    
     { field: "name", headerName: "Name", flex: 1 },
-    { field: "phone", headerName: "Phone", flex: 1 },
+    { field: "phoneNumber", headerName: "Phone", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
-    { field: "membership", headerName: "Membership", flex: 1 },
-    { field: "accountType", headerName: "Account Type", flex: 1 },
+    { field: "membership", headerName: "Membership", flex: 1 }
   ];
 
   const handleRowClick = (params: any) => {

@@ -16,6 +16,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 // Import Client interface
 import { Client } from "@/app/types/Clients/client";
+import { revalidatePath } from "next/cache";
+import revalidateClients from "@/app/actions";
 
 export default function AddClientDialog({
   open,
@@ -28,30 +30,40 @@ export default function AddClientDialog({
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [membership, setMembership] = useState("");
-  const [accountType, setAccountType] = useState("");
   // Handle profilePicture as needed (e.g., file upload)
 
-  const handleAdd = () => {
-    const newClient: Client = {
-      id: String(Date.now()),
-      name,
-      email,
-      phone,
-      membership,
-      accountType,
-      profilePicture: "", // Implement file upload if necessary
-    };
-    onAddClient(newClient);
-    // Reset fields
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMembership("");
-    setAccountType("");
-    onClose();
-  };
+  const handleAdd = async () => {
+
+    try {
+      const newClient = {
+        id: String(Date.now()),
+        name,
+        email,
+        phoneNumber,
+        membership,
+        password: 'ahddw'
+      };
+
+      const response = await fetch('http://localhost:5000/api/customer/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newClient)
+      })
+
+      console.log(await response.json())
+
+      onClose()
+
+      window.location.reload()
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <Box p={2}>
@@ -92,8 +104,8 @@ export default function AddClientDialog({
           type="tel"
           fullWidth
           variant="standard"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
         {/* Membership Field */}
         <TextField
@@ -106,7 +118,7 @@ export default function AddClientDialog({
           onChange={(e) => setMembership(e.target.value)}
         />
         {/* Account Type Field */}
-        <TextField
+        {/* <TextField
           margin="dense"
           label="Account Type"
           type="text"
@@ -114,7 +126,7 @@ export default function AddClientDialog({
           variant="standard"
           value={accountType}
           onChange={(e) => setAccountType(e.target.value)}
-        />
+        /> */}
         {/* Additional Fields as needed */}
       </DialogContent>
       <DialogActions>

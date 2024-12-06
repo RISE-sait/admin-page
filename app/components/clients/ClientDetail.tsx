@@ -60,15 +60,15 @@ export default function ClientDetail({
       </Box>
       {/* Client main details */}
       <Box display="flex" alignItems="center" mb={2}>
-        <Avatar
+        {/* <Avatar
           src={client.profilePicture}
           alt={client.name}
           sx={{ width: 64, height: 64, mr: 2 }}
-        />
+        /> */}
         <Box>
           <Typography variant="h5">{client.name}</Typography>
           <Typography variant="body1">{client.email}</Typography>
-          <Typography variant="body1">{client.phone}</Typography>
+          <Typography variant="body1">{client.phoneNumber}</Typography>
         </Box>
       </Box>
 
