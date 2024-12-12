@@ -14,8 +14,8 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 // Import JSON data
-import clientsData from "src/components/clients/clients.json";
-import { Client } from "src/types/Clients/client";
+import clientsData from "src/data/clients.json";
+import { Client } from "src/types/client";
 
 export default function ClientDetail({
   clientId,

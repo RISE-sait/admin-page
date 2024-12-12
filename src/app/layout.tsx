@@ -3,7 +3,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
-import NavMenu from "../components/navmenu";
+import NavMenu from "../components/nav/navmenu";
 import Session from "../components/session";
 import { usePathname } from "next/navigation";
 

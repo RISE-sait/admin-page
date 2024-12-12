@@ -13,7 +13,7 @@ export default function Session() {
     // Push to login if unauthenticated
     useEffect(() => {
     if (status === "unauthenticated") {
-        router.push("/login");
+        // router.push("/login");
     }
     }, [status, router]);
 

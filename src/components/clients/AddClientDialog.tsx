@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Client } from "src/types/Clients/client";
+import { Client } from "src/types/client";
 
 // Import Client interface
 
@@ -39,6 +39,7 @@ export default function AddClientDialog({
       name,
       email,
       phone,
+      
       membership,
       accountType,
       profilePicture: "", // Implement file upload if necessary

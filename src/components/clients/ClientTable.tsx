@@ -2,7 +2,7 @@
 
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Avatar } from "@mui/material";
-import { Client } from "src/types/Clients/client";
+import { Client } from "src/types/client";
 
 export default function ClientTable({
   clients,
