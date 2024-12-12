@@ -13,7 +13,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { motion } from "framer-motion";
 
-// Import Client interface
 
 // Import JSON data
 import clientsData from "src/components/clients/clients.json";
