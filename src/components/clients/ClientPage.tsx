@@ -15,31 +15,20 @@ import ClientDetail from "./ClientDetail";
 import SearchBar from "../reusable/SearchBar";
 import ClientTable from "./ClientTable";
 import RightDrawer from "../reusable/RightDrawer";
+import { useDrawer } from "src/hooks/drawer";
 
 export default function ClientsPage({ clients }: { clients: Client[] }) {
 
   const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerContent, setDrawerContent] = useState<"details" | "add" | null>(null);
 
-  const handleAddClient = (client: Client) => setDrawerOpen(false)
+  const { drawerOpen, drawerContent, openDrawer, closeDrawer } = useDrawer()
+
+  const handleAddClient = (client: Client) => closeDrawer();
 
   const handleClientSelect = (id: string) => {
     setSelectedClientId(id);
-    setDrawerContent("details");
-    setDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setDrawerOpen(false);
-    setSelectedClientId(null);
-    setDrawerContent(null);
-  };
-
-  const handleOpenAddClientPanel = () => {
-    setDrawerContent("add");
-    setDrawerOpen(true);
-  };
+    openDrawer("details");
+  }
 
   return (
     <div className="p-6 flex">
@@ -62,7 +51,7 @@ export default function ClientsPage({ clients }: { clients: Client[] }) {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleOpenAddClientPanel}
+            onClick={() => openDrawer("add")}
             style={{ marginLeft: "auto" }}
           >
             Add Client
@@ -75,14 +64,14 @@ export default function ClientsPage({ clients }: { clients: Client[] }) {
         />
 
       </motion.div>
-      <RightDrawer drawerOpen={drawerOpen} handleDrawerClose={handleDrawerClose}>
+      <RightDrawer drawerOpen={drawerOpen} handleDrawerClose={closeDrawer}>
         {
-          drawerContent === "details" && selectedClientId && <ClientDetail clientId={selectedClientId} onBack={handleDrawerClose} />
+          drawerContent === "details" && selectedClientId && <ClientDetail clientId={selectedClientId} onBack={closeDrawer} />
         }
         {
           drawerContent === "add" && <AddClientDialog
             open={drawerOpen}
-            onClose={handleDrawerClose}
+            onClose={closeDrawer}
             onAddClient={handleAddClient}
           />
         }
