@@ -2,9 +2,7 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import NavMenu from "../components/nav/navmenu";
-import Session from "../components/session";
 import { usePathname } from "next/navigation";
 
 const geistSans = localFont({
@@ -32,13 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
-        <SessionProvider>
-          <Session />
-          <div className="flex h-full">
-            {!isLoginPage && <NavMenu />}
-            <main className="flex-1 p-4">{children}</main>
-          </div>
-        </SessionProvider>
+        <div className="flex h-full">
+          {!isLoginPage && <NavMenu />}
+          <main className="flex-1 p-4">{children}</main>
+        </div>
       </body>
     </html>
   );
