@@ -3,9 +3,11 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Divider,
 } from "@mui/material";
 import {
   Home as HomeIcon,
+  Settings as SettingsIcon,
 } from "@mui/icons-material";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,9 +15,8 @@ import RiseLogo from "@/public/RiseLogo.svg";
 import SubMenu from "./sub-menu";
 
 export default function NavMenu() {
-
   return (
-    <div className="h-screen w-64 border-r border-gray-300 p-4">
+    <div className="h-screen w-64 border-r border-gray-300 p-4 bg-gray-50">
       {/* Logo at the top */}
       <Link href="/" passHref>
         <div className="flex justify-center mb-8">
@@ -34,7 +35,16 @@ export default function NavMenu() {
         </ListItemButton>
 
         {/* Manage Section */}
-        <SubMenu/>
+        <SubMenu />
+
+        {/* Settings */}
+        <Divider className="my-4" />
+        <ListItemButton component={Link} href="/settings">
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItemButton>
       </List>
     </div>
   );
