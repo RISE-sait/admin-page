@@ -5,7 +5,7 @@ type itemProps = {
     FacilityAddress: string,
 }
 
-export default function ClassListItem({date, Time, ClassTitle, FacilityAddress}: itemProps) {
+export default function CourseListItem({date, Time, ClassTitle, FacilityAddress}: itemProps) {
 
     // Pass Date in Format 2025-01-25
     const ParsedDate = new Date(date + "T00:00:00")
