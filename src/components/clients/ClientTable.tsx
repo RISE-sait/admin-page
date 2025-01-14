@@ -29,17 +29,13 @@ export default function ClientTable({
     { field: "accountType", headerName: "Account Type", flex: 1 },
   ];
 
-  const handleRowClick = (params: any) => {
-    onClientSelect(params.id);
-  };
-
   return (
-    <div style={{ height: 600 }}>
+    <div style={{ height: 500 }}>
       <DataGrid
         rows={clients}
         columns={columns}
         pageSizeOptions={[10]}
-        onRowClick={handleRowClick}
+        onRowClick={(params) => onClientSelect(params.row.id)}
       />
     </div>
   );
