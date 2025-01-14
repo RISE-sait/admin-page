@@ -9,6 +9,7 @@ import {
   Payments as PaymentsIcon,
   BarChart as BarChartIcon,
   CardMembership as MembershipIcon,
+  AddBusiness as AddBusinessIcon,
 } from "@mui/icons-material";
 import {
   ListItemButton,
@@ -75,6 +76,14 @@ export default function SubMenu() {
               <MembershipIcon />
             </ListItemIcon>
             <ListItemText primary="Memberships" />
+          </ListItemButton>
+
+          {/* Store */}
+          <ListItemButton component={Link} href="/manage/store" sx={{ pl: 4 }}>
+            <ListItemIcon>
+              < AddBusinessIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Store" />
           </ListItemButton>
         </List>
       </Collapse>
