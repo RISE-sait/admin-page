@@ -3,16 +3,19 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Divider,
 } from "@mui/material";
 import {
   Home as HomeIcon,
   Settings as SettingsIcon,
+  Message as MessagesIcon,
+  Home,
 } from "@mui/icons-material";
 import Link from "next/link";
 import Image from "next/image";
 import RiseLogo from "@/public/RiseLogo.svg";
-import SubMenu from "./sub-menu";
+import ManageSubMenu from "./manage-sub-menu";
+import ReportSubMenu from "./report-sub-menu";
+import HomeSubMenu from "./home-sub-menu";
 
 export default function NavMenu() {
   return (
@@ -27,18 +30,26 @@ export default function NavMenu() {
       {/* Navigation Menu */}
       <List component="nav">
         {/* Home Link */}
-        <ListItemButton component={Link} href="/">
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItemButton>
+        <HomeSubMenu />
+
+
 
         {/* Manage Section */}
-        <SubMenu />
+        <ManageSubMenu />
+
+        {/* Message Section */}
+        <ListItemButton component={Link} href="/messages">
+          <ListItemIcon>
+            <MessagesIcon />
+          </ListItemIcon>
+          <ListItemText primary="Messages" />
+        </ListItemButton>
+
+
+        {/* Reports Section */}
+        <ReportSubMenu />
 
         {/* Settings */}
-        <Divider className="my-4" />
         <ListItemButton component={Link} href="/settings">
           <ListItemIcon>
             <SettingsIcon />
