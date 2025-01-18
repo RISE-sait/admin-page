@@ -7,9 +7,30 @@ export interface Event extends BigCalendarEvent {
   end: Date;
 }
 
-export interface Filters {
-  trainers: string[];
-  classes: string[];
-  appointments: string[];
-  categories: string[];
+export interface Trainer {
+  id: number;
+  name: string;
+  checked: boolean;
+}
+
+export interface Class {
+  id: number;
+  name: string;
+  checked: boolean;
+}
+
+export interface Facility {
+  id: number;
+  name: string;
+  checked: boolean;
+  warning?: boolean;
+}
+
+export type AppointmentsType = "booked" | "non-booked" | "both";
+
+export interface FiltersType {
+  trainers: Trainer[];
+  classes: Class[];
+  appointments: AppointmentsType;
+  facilities: Facility[];
 }
