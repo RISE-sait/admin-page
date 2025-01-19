@@ -6,10 +6,11 @@ import {
   ExpandMore,
   People,
   Class as ClassIcon,
-  Payments as PaymentsIcon,
+  Store as StoreIcon,
   BarChart as BarChartIcon,
   CardMembership as MembershipIcon,
-  AddBusiness as AddBusinessIcon,
+  LocalConvenienceStore as LocalConvenienceStoreIcon,
+  SportsBasketball as SportsBasketballIcon,
 } from "@mui/icons-material";
 import {
   ListItemButton,
@@ -21,7 +22,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SubMenu() {
+export default function ManageSubMenu() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -54,20 +55,28 @@ export default function SubMenu() {
             <ListItemText primary="Classes" />
           </ListItemButton>
 
-          {/* Transactions */}
-          <ListItemButton component={Link} href="/manage/transactions" sx={{ pl: 4 }}>
+          {/* Store */}
+          <ListItemButton component={Link} href="/manage/store" sx={{ pl: 4 }}>
             <ListItemIcon>
-              <PaymentsIcon />
+              <StoreIcon />
             </ListItemIcon>
-            <ListItemText primary="Transactions" />
+            <ListItemText primary="Store" />
           </ListItemButton>
 
-          {/* Financials */}
-          <ListItemButton component={Link} href="/manage/financials" sx={{ pl: 4 }}>
+          {/* Facilities */}
+          <ListItemButton component={Link} href="/manage/facilities" sx={{ pl: 4 }}>
             <ListItemIcon>
-              <BarChartIcon />
+              <LocalConvenienceStoreIcon />
             </ListItemIcon>
-            <ListItemText primary="Financials" />
+            <ListItemText primary="Facilities" />
+          </ListItemButton>
+
+          {/* Trainers */}
+          <ListItemButton component={Link} href="/manage/trainers" sx={{ pl: 4 }}>
+            <ListItemIcon>
+              <SportsBasketballIcon />
+            </ListItemIcon>
+            <ListItemText primary="Trainers" />
           </ListItemButton>
 
           {/* Memberships */}
@@ -76,14 +85,6 @@ export default function SubMenu() {
               <MembershipIcon />
             </ListItemIcon>
             <ListItemText primary="Memberships" />
-          </ListItemButton>
-          
-          {/* Store */}
-          <ListItemButton component={Link} href="/manage/store" sx={{ pl: 4 }}>
-            <ListItemIcon>
-              < AddBusinessIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Store" />
           </ListItemButton>
         </List>
       </Collapse>

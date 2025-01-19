@@ -1,18 +1,31 @@
 import { useState } from "react";
+import { Event } from "../types/calendar";
 
 export const useDrawer = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerContent, setDrawerContent] = useState<"details" | "add" | null>(null);
+  const [drawerContent, setDrawerContent] = useState<"details" | "add">("details");
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
-  const openDrawer = (content: "details" | "add") => {
+  const openDrawer = (content: "details" | "add", event?: Event) => {
     setDrawerContent(content);
+    if (content === "details" && event) {
+      setSelectedEvent(event);
+    } else {
+      setSelectedEvent(null);
+    }
     setDrawerOpen(true);
   };
 
   const closeDrawer = () => {
     setDrawerOpen(false);
-    setDrawerContent(null);
+    setSelectedEvent(null);
   };
 
-  return { drawerOpen, drawerContent, openDrawer, closeDrawer };
+  return {
+    drawerOpen,
+    drawerContent,
+    selectedEvent,
+    openDrawer,
+    closeDrawer,
+  };
 };
