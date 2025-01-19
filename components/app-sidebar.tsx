@@ -1,18 +1,9 @@
 "use client"
-
+ 
 import * as React from "react"
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  GalleryVerticalEnd,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
-
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
+import Image from "next/image"
 import {
   Sidebar,
   SidebarContent,
@@ -27,28 +18,11 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Home",
       url: "#",
-      icon: SquareTerminal,
+      icon: "Icons/Home.svg",
       isActive: true,
       items: [
         {
@@ -64,7 +38,7 @@ const data = {
     {
       title: "Manage",
       url: "#",
-      icon: Bot,
+      icon: 'Icons/Manage.svg',
       items: [
         {
           title: "Clients",
@@ -95,7 +69,7 @@ const data = {
     {
       title: "Automation",
       url: "#",
-      icon: BookOpen,
+      icon: 'Icons/Automation.svg',
       items: [
         {
           title: "Messages",
@@ -106,7 +80,7 @@ const data = {
     {
       title: "Reports",
       url: "#",
-      icon: Settings2,
+      icon: 'Icons/Reports.svg',
       items: [
         {
           title: "Transactions",
@@ -125,7 +99,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-
+      <div className="flex items-center justify-center h-12 pt-12 pb-8 w-full" > 
+        <Image src={'/RiseLogo.svg'} alt={"Rise Logo"} width={100} height={100} /> 
+      </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
