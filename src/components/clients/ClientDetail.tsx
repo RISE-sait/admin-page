@@ -7,8 +7,6 @@ import {
   Typography,
   Box,
   Avatar,
-  Button,
-  TextField,
   IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -16,6 +14,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 // Import JSON data
 import clientsData from "src/data/clients.json";
 import { Client } from "src/types/client";
+
+// Tab Components
+import MembershipTab from "./details/Membership";
+import DetailsTab from "./details/Details";
+import ClassesTab from "./details/Classes";
+import Notes from "./details/Notes";
+import TransactionsTab from "./details/Transactions";
 
 export default function ClientDetail({
   clientId,
@@ -43,6 +48,7 @@ export default function ClientDetail({
 
   return (
     <Box p={2}>
+      {/* Header */}
       <Box display="flex" alignItems="center" mb={2}>
         <IconButton onClick={onBack}>
           <ArrowBackIcon />
@@ -51,6 +57,7 @@ export default function ClientDetail({
           Client Details
         </Typography>
       </Box>
+
       {/* Client main details */}
       <Box display="flex" alignItems="center" mb={2}>
         <Avatar
@@ -60,8 +67,14 @@ export default function ClientDetail({
         />
         <Box>
           <Typography variant="h5">{client.name}</Typography>
-          <Typography variant="body1">{client.email}</Typography>
-          <Typography variant="body1">{client.phone}</Typography>
+          <Typography variant="body1">Email: {client.email}</Typography>
+          <Typography variant="body1">Phone: {client.phone}</Typography>
+          <Typography variant="body1">
+            Membership: {client.membership}
+          </Typography>
+          <Typography variant="body1">
+            Account Type: {client.accountType}
+          </Typography>
         </Box>
       </Box>
 
@@ -73,58 +86,28 @@ export default function ClientDetail({
         indicatorColor="primary"
         textColor="primary"
       >
-        <Tab label="Membership" />
+        <Tab label="Membership"/>
         <Tab label="Details" />
-        <Tab label="Transactions" />
         <Tab label="Classes" />
+        <Tab label="Transactions" />
         <Tab label="Notes" />
       </Tabs>
 
       {/* Tab Panels */}
-      {tabIndex === 0 && (
-        <Box p={2}>
-          {/* Membership Tab Content */}
-          <Typography variant="h6">Membership</Typography>
-          {/* Display membership details */}
-        </Box>
-      )}
-      {tabIndex === 1 && (
-        <Box p={2}>
-          {/* Details Tab Content */}
-          <Typography variant="h6">Details</Typography>
-          {/* Display and edit client details */}
-        </Box>
-      )}
-      {tabIndex === 2 && (
-        <Box p={2}>
-          {/* Transactions Tab Content */}
-          <Typography variant="h6">Transactions</Typography>
-          {/* List of transactions */}
-        </Box>
-      )}
-      {tabIndex === 3 && (
-        <Box p={2}>
-          {/* Classes Tab Content */}
-          <Typography variant="h6">Classes</Typography>
-          {/* List and enroll in classes */}
-        </Box>
-      )}
-      {tabIndex === 4 && (
-        <Box p={2}>
-          {/* Notes Tab Content */}
-          <Typography variant="h6">Notes</Typography>
-          <TextField
-            label="Add Note"
-            multiline
-            rows={4}
-            fullWidth
-            variant="outlined"
-          />
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-            Save Note
-          </Button>
-        </Box>
-      )}
+      <Box p={2}>
+        {tabIndex === 0 && client.membershipTab && (
+          <MembershipTab membershipTab={client.membershipTab} />
+        )}
+        {tabIndex === 1 && client.detailsTab && (
+          <DetailsTab detailsTab={client.detailsTab} />
+        )}
+        {tabIndex === 2 && client.classes && (
+          <ClassesTab classes={client.classes} />
+        )}
+        {tabIndex === 3 && <TransactionsTab />}
+        {tabIndex === 4 && <Notes />}
+        
+      </Box>
     </Box>
   );
 }
