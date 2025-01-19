@@ -22,7 +22,7 @@ const data = {
     {
       title: "Home",
       url: "#",
-      icon: "Icons/Home.svg",
+      icon: "/Icons/Home.svg",
       isActive: true,
       items: [
         {
@@ -38,11 +38,11 @@ const data = {
     {
       title: "Manage",
       url: "#",
-      icon: 'Icons/Manage.svg',
+      icon: '/Icons/Manage.svg',
       items: [
         {
           title: "Clients",
-          url: "#",
+          url: "manage/clients",
         },
         {
           title: "Classes",
@@ -69,7 +69,7 @@ const data = {
     {
       title: "Automation",
       url: "#",
-      icon: 'Icons/Automation.svg',
+      icon: '/Icons/Automation.svg',
       items: [
         {
           title: "Messages",
@@ -80,7 +80,7 @@ const data = {
     {
       title: "Reports",
       url: "#",
-      icon: 'Icons/Reports.svg',
+      icon: '/Icons/Reports.svg',
       items: [
         {
           title: "Transactions",
